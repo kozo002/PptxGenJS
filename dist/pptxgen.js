@@ -1609,7 +1609,7 @@ var PptxGenJS = function(){
 	/**
 	 * DESC: Export the .pptx file
 	 */
-	function doExportPresentation(outputType, browserCallback) {
+	function doExportPresentation(outputType) {
 		var arrChartPromises = [];
 		var intSlideNum = 0, intRels = 0;
 
@@ -1687,8 +1687,8 @@ var PptxGenJS = function(){
 			}
 			else {
 				zip.generateAsync({type:'blob'}).then(function(content){
-					if (typeof browserCallback === 'function') {
-						browserCallback(strExportName, content);
+					if ( gObjPptx.saveCallback ) {
+						gObjPptx.saveCallback(content);
 					} else {
 						writeFileToBrowser(strExportName, content);
 					}
