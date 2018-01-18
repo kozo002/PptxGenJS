@@ -1609,7 +1609,7 @@ var PptxGenJS = function(){
 	/**
 	 * DESC: Export the .pptx file
 	 */
-	function doExportPresentation(outputType) {
+	function doExportPresentation(outputType, browserCallback) {
 		var arrChartPromises = [];
 		var intSlideNum = 0, intRels = 0;
 
@@ -1686,7 +1686,13 @@ var PptxGenJS = function(){
 				}
 			}
 			else {
-				zip.generateAsync({type:'blob'}).then(function(content){ writeFileToBrowser(strExportName, content); });
+				zip.generateAsync({type:'blob'}).then(function(content){
+					if (typeof browserCallback === 'function') {
+						browserCallback(strExportName, content);
+					} else {
+						writeFileToBrowser(strExportName, content);
+					}
+				});
 			}
 		})
 		.catch(function(strErr){
