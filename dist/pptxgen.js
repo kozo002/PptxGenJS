@@ -4406,7 +4406,9 @@ var PptxGenJS = function(){
 	 * @param {string} [strExportName] - Filename to use for the export
 	 * @param {Blob} [content] - Presentation file data
 	 */
-	this.writeFileToBrowser = function writeFileToBrowser(strExportName, content) {
+	this.writeFileToBrowser = function _writeFileToBrowser(strExportName, content) {
+		gObjPptx.saveCallback = null
+		if (!/\.pptx$/.test(strExportName)) { strExportName += '.pptx' }
 		writeFileToBrowser(strExportName, content);
 	};
 
