@@ -4402,6 +4402,15 @@ var PptxGenJS = function(){
 	};
 
 	/**
+	 * Export the Presentation to an .pptx file
+	 * @param {string} [strExportName] - Filename to use for the export
+	 * @param {Blob} [content] - Presentation file data
+	 */
+	this.writeFileToBrowser = function writeFileToBrowser(strExportName, content) {
+		writeFileToBrowser(strExportName, content);
+	};
+
+	/**
 	 * Add a new Slide to the Presentation
 	 * @returns {Object[]} slideObj - The new Slide object
 	 */
